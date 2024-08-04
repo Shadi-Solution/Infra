@@ -11,6 +11,20 @@ spec:
     - host: dev-shadisolution.com
       http:
         paths:
+          - path: /user-management(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: user-mgmt-srv
+                port:
+                  number: 3002
+          - path: /tenant-management(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: tenant-mgmt-srv
+                port:
+                  number: 3001
           - path: /?(.*)
             pathType: ImplementationSpecific
             backend:

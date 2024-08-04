@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-mgmt-depl
+  namespace: shadi-solution
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-mgmt
+  template:
+    metadata:
+      labels:
+        app: user-mgmt
+    spec:
+      containers:
+        - name: user-mgmt
+          image: shadi-solution/user-mgmt
+          imagePullPolicy: IfNotPresent
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-mgmt-srv
+  namespace: shadi-solution
+spec:
+  selector:
+    app: user-mgmt
+  ports:
+    - name: user-mgmt
+      protocol: TCP
+      port: 3002
+      targetPort: 80

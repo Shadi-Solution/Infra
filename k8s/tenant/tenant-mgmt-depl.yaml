@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenant-mgmt-depl
+  namespace: shadi-solution
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tenant-mgmt
+  template:
+    metadata:
+      labels:
+        app: tenant-mgmt
+    spec:
+      containers:
+        - name: tenant-mgmt
+          image: shadi-solution/tenant-mgmt
+          imagePullPolicy: IfNotPresent
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tenant-mgmt-srv
+  namespace: shadi-solution
+spec:
+  selector:
+    app: tenant-mgmt
+  ports:
+    - name: tenant-mgmt
+      protocol: TCP
+      port: 3001
+      targetPort: 80

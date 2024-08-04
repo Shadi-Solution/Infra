@@ -1,0 +1,3 @@
+resources:
+  - tenant-mgmt-depl.yaml
+  - tenant-mgmt-hpa.yaml

@@ -1,4 +1,6 @@
 resources:
   - namespace.yaml
   - portal/
+  - tenant/
+  - user/
   - ingress-srv.yaml
